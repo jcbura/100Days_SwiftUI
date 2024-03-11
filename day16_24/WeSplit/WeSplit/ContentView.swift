@@ -54,6 +54,7 @@ struct ContentView: View {
                     Picker("How much do you want to tip?", selection: $tipPercentage) {
                         ForEach(0..<101) {
                             Text($0, format: .percent)
+                                .foregroundStyle(tipPercentage == 0 ? .red : .secondary)
                         }
                     }
                     .pickerStyle(.navigationLink)
