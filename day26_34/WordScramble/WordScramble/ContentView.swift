@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -39,16 +40,36 @@ struct ContentView: View {
             .alert(errorTitle, isPresented: $showingError) { } message: {
                 Text(errorMessage)
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Spacer()
+                    Button("new word") {
+                        startGame()
+                    }
+                    Spacer()
+                    Text("score: \(score)")
+                    Spacer()
+                }
+            }
         }
+        
     }
     
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard answer.count > 0 else { return }
-        
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original!")
+            return
+        }
+        
+        guard isLongEnough(word: answer) else {
+            wordError(title: "Word is too short", message: "Must be more than 3 characters!")
+            return
+        }
+        
+        guard isNotRootWord(word: answer) else {
+            wordError(title: "Word is not allowed", message: "\(rootWord) is not an allowed word!")
             return
         }
         
@@ -66,6 +87,7 @@ struct ContentView: View {
             usedWords.insert(answer, at: 0)
         }
         
+        score += answer.count
         newWord = ""
     }
     
@@ -74,6 +96,8 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                score = 0
+                usedWords = []
                 return
             }
         }
@@ -83,6 +107,14 @@ struct ContentView: View {
     
     func isOriginal(word: String) -> Bool {
         !usedWords.contains(word)
+    }
+    
+    func isLongEnough(word: String) -> Bool {
+        word.count > 2
+    }
+    
+    func isNotRootWord(word: String) -> Bool {
+        word != rootWord
     }
     
     func isPossible(word: String) -> Bool {
