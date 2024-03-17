@@ -30,6 +30,11 @@ struct ContentView: View {
     @State private var gameFinished = false
     @State private var tries = 0
     
+    @State private var animationDegrees = [0.0, 0.0, 0.0]
+    @State private var animationOpacity = [1.0, 1.0, 1.0]
+    @State private var animationScale = [false, false, false]
+    @State private var selectedFlag = 0
+    
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -58,10 +63,25 @@ struct ContentView: View {
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
+                            if number == selectedFlag {
+                                animationDegrees[number] += 360
+                            }
+                            for i in 0..<3 where i != number {
+                                animationOpacity[i] *= 0.25
+                                animationScale[i] = true
+                            }
                         } label: {
                             FlagImage(array: countries, number: number)
+                                .rotation3DEffect(.degrees(animationDegrees[number]), axis: (x: 0, y: 1, z: 0))
+                                .opacity(animationOpacity[number])
+                                .scaleEffect(animationScale[number] ? 0 : 1)
+                                
                         }
                     }
+                    .animation(.default, value: animationDegrees)
+                    .animation(.default, value: animationOpacity)
+                    .animation(.default, value: animationScale)
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -92,10 +112,12 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+        selectedFlag = number
+        
         tries += 1
         
         if number == correctAnswer {
-            scoreTitle = "Correct! \(tries)"
+            scoreTitle = "Correct!"
             score += 1
         } else {
             scoreTitle = "Wrong! That's the flag of \(countries[number])"
@@ -112,6 +134,11 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        selectedFlag = 0
+        animationDegrees = [0.0, 0.0, 0.0]
+        animationOpacity = [1.0, 1.0, 1.0]
+        animationScale = [false, false, false]
+        
     }
     
     func reset() {
