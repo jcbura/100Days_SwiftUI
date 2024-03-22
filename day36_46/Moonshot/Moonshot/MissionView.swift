@@ -50,7 +50,7 @@ struct MissionView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(crew, id: \.role) { crewMember in
-                            NavigationLink {
+                            NavigationLink { // how do I convert this to use NavigationLink(value: ) ?
                                 AstronautView(astronaut: crewMember.astronaut)
                             } label: {
                                 Image(crewMember.astronaut.id)
@@ -82,6 +82,7 @@ struct MissionView: View {
         .navigationBarTitleDisplayMode(.inline)
         .background(.darkBackground)
     }
+        
     
     init(mission: Mission, astronauts: [String: Astronaut]) {
         self.mission = mission
