@@ -15,6 +15,7 @@
 		96CB2EEE2BB314E8002BF8FC /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CB2EED2BB314E8002BF8FC /* AddBookView.swift */; };
 		96CB2EF02BB317BA002BF8FC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CB2EEF2BB317BA002BF8FC /* RatingView.swift */; };
 		96CB2EF22BB31A25002BF8FC /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CB2EF12BB31A25002BF8FC /* EmojiRatingView.swift */; };
+		96F312002BB3632A003ED64E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F311FF2BB3632A003ED64E /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		96CB2EED2BB314E8002BF8FC /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		96CB2EEF2BB317BA002BF8FC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		96CB2EF12BB31A25002BF8FC /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
+		96F311FF2BB3632A003ED64E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				96CB2EDB2BB30B34002BF8FC /* BookwormApp.swift */,
 				96CB2EDD2BB30B34002BF8FC /* ContentView.swift */,
+				96F311FF2BB3632A003ED64E /* DetailView.swift */,
 				96CB2EF12BB31A25002BF8FC /* EmojiRatingView.swift */,
 				96CB2EEF2BB317BA002BF8FC /* RatingView.swift */,
 				96CB2EED2BB314E8002BF8FC /* AddBookView.swift */,
@@ -152,6 +155,7 @@
 				96CB2EDE2BB30B34002BF8FC /* ContentView.swift in Sources */,
 				96CB2EDC2BB30B34002BF8FC /* BookwormApp.swift in Sources */,
 				96CB2EEC2BB31460002BF8FC /* Book.swift in Sources */,
+				96F312002BB3632A003ED64E /* DetailView.swift in Sources */,
 				96CB2EF02BB317BA002BF8FC /* RatingView.swift in Sources */,
 				96CB2EF22BB31A25002BF8FC /* EmojiRatingView.swift in Sources */,
 				96CB2EEE2BB314E8002BF8FC /* AddBookView.swift in Sources */,
